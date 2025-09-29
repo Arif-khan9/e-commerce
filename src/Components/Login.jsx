@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import { FaGoogle } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
+import { FaEye } from "react-icons/fa";
+import { FaEyeSlash } from "react-icons/fa";
 const Login = () => {
 
 
 
-
+    const [icon , setIcon] = useState(true)
     const [login , setLogin] = useState({
         name: "",
         password: "",
@@ -24,7 +26,7 @@ const Login = () => {
         e.preventDefault()
         if(login.name.trim().length > 0 && login.password.trim().length > 0 ){
 
-           const res = await fetch("https://e-commerce-backened-4fih.onrender.com/signup" ,{
+           const res = await fetch("https://e-commerce-backened-4fih.onrender.com/login" ,{
             method:"POST",
             headers: { "Content-Type": "application/json" },
             body:JSON.stringify({username:login.name , password:login.password})
@@ -37,7 +39,9 @@ const Login = () => {
         }
        
     }
-
+   const clickbtn = ()=>{
+    setIcon(!icon)
+   }
 
 
   return (
@@ -49,7 +53,14 @@ const Login = () => {
        <form onSubmit={handleSubmitform}>
         <div className='flex flex-col justify-center items-center gap-5 mt-5'>
          <input className='border border-gray-400 rounded-xl p-3 w-80  ' type="text"  placeholder='Name' name='name' required value={login.name} onChange={handleinputchange}/>
-        <input className='border p-3 w-80 border-gray-400 rounded-xl ' type="password" placeholder='password' name='password' required value={login.password} onChange={handleinputchange} />
+       <div className='flex items-center'>
+         <input className='border p-3 w-80 border-gray-400 rounded-xl ' type="password" placeholder='password' name='password' required value={login.password} onChange={handleinputchange} />
+         {
+            icon ? <FaEyeSlash  className={`${login.password.length > 0 ? "relative right-9 block" : "relative right-9 hidden"}`} onClick={clickbtn}/> : <FaEye className='relative right-9'  onClick={clickbtn}/> 
+         }
+        
+         
+       </div>
        </div>
         <div className='flex items-center justify-center gap-15 mt-8'>
             <div className='flex items-center gap-1'>

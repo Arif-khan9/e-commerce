@@ -2,8 +2,12 @@
 import { useState } from "react";
 import { FaGoogle } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
+import { FaEye } from "react-icons/fa";
+import { FaEyeSlash } from "react-icons/fa";
+
 const Signup = () => {
  
+  const [ icon , setIcon] = useState(false)
     const [ contact , setContact] = useState({
         name: "",
         password: "",
@@ -19,11 +23,24 @@ const handleinput = (e)=>{
 
   }))
 }
-const handlechange =(e)=>{
+const handlechange = async(e)=>{
   e.preventDefault()
-  console.log(contact)
+
+  if(contact.name.trim().length > 0 && contact.password.trim().length > 0){
+    const res = await fetch("https://e-commerce-backened-4fih.onrender.com/signup" ,{
+      method:"POST",
+      headers: {"Content-Type":"application/json"},
+      body:JSON.stringify({username:contact.name.toLowerCase() , password:contact.password.toLowerCase()})
+    })
+    console.log(res.status)
+  }
+  
+
 }
 
+const showPass = ()=>{
+  setIcon(!icon)
+}
     
 
   return (
@@ -34,8 +51,12 @@ const handlechange =(e)=>{
         <h1 className=' mt-3 text-2xl font-bold'>Welcome back</h1>
        <form onSubmit={handlechange}>
         <div className='flex flex-col justify-center items-center gap-5 mt-5'>
-         <input className='border border-gray-400 rounded-xl p-3 w-80  ' type="text"  placeholder='Enter your  Name' name="name" value={contact.name} onChange={handleinput}/>
-        <input className='border p-3 w-80 border-gray-400 rounded-xl ' type="password" placeholder='password' name="password" value={contact.password} onChange={handleinput} />
+        
+          <input className='border border-gray-400  rounded-xl p-3 w-80  ' type="text"  placeholder='Enter your  Name' name="name" required value={contact.name} onChange={handleinput}/>
+          <div className="flex items-center">
+            <input className='border p-3 w-80 border-gray-400 rounded-xl ' type={`${icon ? "text" : "password"}`} placeholder='password' name="password" required value={contact.password} onChange={handleinput} />
+        {icon ? <FaEyeSlash  className={`${contact.password.length > 0 ? "relative right-8 block " : " relative right-8 hidden"} `} onClick={showPass}/> : <FaEye  className="relative right-8" onClick={showPass} /> }
+          </div>
        </div>
         <div className='flex items-center justify-center gap-15 mt-8'>
             <div className='flex items-center gap-1'>
