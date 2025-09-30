@@ -55,7 +55,7 @@ const showPass = ()=>{
           <input className='border border-gray-400  rounded-xl p-3 w-80  ' type="text"  placeholder='Enter your  Name' name="name" required value={contact.name} onChange={handleinput}/>
           <div className="flex items-center">
             <input className='border p-3 w-80 border-gray-400 rounded-xl ' type={`${icon ? "text" : "password"}`} placeholder='password' name="password" required value={contact.password} onChange={handleinput} />
-        {icon ? <FaEyeSlash  className={`${contact.password.length > 0 ? "relative right-8 block " : " relative right-8 hidden"} `} onClick={showPass}/> : <FaEye  className="relative right-8" onClick={showPass} /> }
+        {icon ? <FaEye  className="relative right-8" onClick={showPass} /> : <FaEyeSlash  className={`${contact.password.length > 0 ? "relative right-8 block " : " relative right-8 hidden"} `} onClick={showPass}/>  }
           </div>
        </div>
         <div className='flex items-center justify-center gap-15 mt-8'>

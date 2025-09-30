@@ -7,7 +7,7 @@ const Login = () => {
 
 
 
-    const [icon , setIcon] = useState(true)
+    const [icon , setIcon] = useState(false)
     const [login , setLogin] = useState({
         name: "",
         password: "",
@@ -54,9 +54,9 @@ const Login = () => {
         <div className='flex flex-col justify-center items-center gap-5 mt-5'>
          <input className='border border-gray-400 rounded-xl p-3 w-80  ' type="text"  placeholder='Name' name='name' required value={login.name} onChange={handleinputchange}/>
        <div className='flex items-center'>
-         <input className='border p-3 w-80 border-gray-400 rounded-xl ' type="password" placeholder='password' name='password' required value={login.password} onChange={handleinputchange} />
+         <input className='border p-3 w-80 border-gray-400 rounded-xl ' type={`${icon ? "text":"password"}`} placeholder='password' name='password' required value={login.password} onChange={handleinputchange} />
          {
-            icon ? <FaEyeSlash  className={`${login.password.length > 0 ? "relative right-9 block" : "relative right-9 hidden"}`} onClick={clickbtn}/> : <FaEye className='relative right-9'  onClick={clickbtn}/> 
+            icon ?<FaEye className='relative right-9'  onClick={clickbtn} /> :<FaEyeSlash  className={`${login.password.length > 0  ? "relative right-9 block" : "relative right-9 hidden"}`} onClick={clickbtn} /> 
          }
         
          
