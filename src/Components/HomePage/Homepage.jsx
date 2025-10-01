@@ -30,10 +30,10 @@ const handleclickbtn = () =>{
    <>
    <nav>
     <div className='py-3 bg-black flex justify-center text-white items-center'>
-        <p className=' text-sm md:text-xl '>Welcome All</p>
+        <p className=' text-[25px] md:text-xl '>Welcome All</p>
     </div>
     <div className='flex justify-between px-5 md:px-10 lg:px-30 items-center  h-20 md:h-25 '>
-        <div><p className=' text-[10px] md:text-xl'>Logo</p></div>
+        <div><p className=' text-[20px] md:text-xl'>Logo</p></div>
         <div className='flex justify-center items-center hidden md:block md:flex gap-3 md:gap-5 lg:gap-12 text-[10px] md:text-xl'>
             <p>Logout</p>
             <p className='flex justify-center items-center gap-1'> <CiHeart  className=' text-[10px] md:text-xl '/>Wish List</p>
@@ -42,8 +42,7 @@ const handleclickbtn = () =>{
            
         </div> 
         {menuicon ? 
-          <div className='flex md:hidden block  justify-between  md:px-10 lg:px-30 items-center h-100  px-4 ml-60 bg-amber-300 flex relative md:h-25 '>
-           
+          <div className='flex  md:hidden  justify-between  md:px-10 lg:px-30 items-center h-100  px-8 ml-60 bg-amber-300 flex relative md:h-25 '>
           <div><p className=' hidden text-[10px] md:text-xl'>Logo</p></div>
         <div className='flex justify-center items-center  md:flex gap-3 md:gap-5 lg:gap-12 text-[10px] md:text-xl flex-col'>
              <AiOutlineClose className='text-xl'  onClick={handleclickbtn}/>
@@ -55,15 +54,10 @@ const handleclickbtn = () =>{
         </div> 
         </div>
         :
-         <div className='flex justify-center items-center  hidden md:flex gap-3 md:gap-5 lg:gap-12 text-[10px] md:text-xl'>
-            <p>Logout</p>
-            <p className='flex justify-center items-center gap-1'> <CiHeart  className=' text-[10px] md:text-xl '/>Wish List</p>
-            <p className='flex justify-center items-center gap-1'><FaShoppingBag className='text-[10px]md:text-xl' />Shopping Bag</p>
-            <p>Hi User</p>
-        </div> 
+         <IoMenuSharp  className='md:hidden block text-[25px]' onClick={handleclickbtn} />
         }
          
-         <IoMenuSharp className='md:hidden block' onClick={handleclickbtn} />
+         
     </div>
     <div className='py-3 bg-black text-[10px] md:text-xl flex justify-around items-center text-white'>
         <p>50%OFF</p>
