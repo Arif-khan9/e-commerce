@@ -42,10 +42,10 @@ const handleclickbtn = () =>{
            
         </div> 
         {menuicon ? 
-          <div className='flex  md:hidden  justify-between  md:px-10 lg:px-30 items-center h-100  px-8 ml-60 bg-amber-300 flex relative md:h-25 '>
+          <div className='flex  md:hidden  justify-between  md:px-10 lg:px-30 items-center h-100  px-8  bg-amber-300 flex left-6 relative md:h-25 '>
           <div><p className=' hidden text-[10px] md:text-xl'>Logo</p></div>
-        <div className='flex justify-center items-center  md:flex gap-3 md:gap-5 lg:gap-12 text-[10px] md:text-xl flex-col'>
-             <AiOutlineClose className='text-xl'  onClick={handleclickbtn}/>
+        <div className='flex justify-center items-center  md:flex gap-3 md:gap-5 lg:gap-12 text-[15px] md:text-xl flex-col'>
+             <AiOutlineClose className='text-[27px]'  onClick={handleclickbtn}/>
             <p>Logout</p>
             <p className='flex justify-center items-center gap-1'> <CiHeart  className=' text-[10px] md:text-xl '/>Wish List</p>
             <p className='flex justify-center items-center gap-1'><FaShoppingBag className='text-[10px]md:text-xl' />Shopping Bag</p>
