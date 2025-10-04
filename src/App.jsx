@@ -2,7 +2,8 @@ import { Route, Routes, Navigate } from "react-router-dom";
 // import Login from "./Components/Login";
 // import Signup from "./Components/Signup";
  import React from "react";
- import Homepage from "./Components/HomePage/Homepage";
+ 
+ import Homepage from "./pages/Homepage";
 
 const App = () => {
  
