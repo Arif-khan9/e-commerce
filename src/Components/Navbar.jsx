@@ -3,6 +3,7 @@ import { CiHeart } from "react-icons/ci";
 import { FaShoppingBag } from "react-icons/fa";
 import { IoMenuSharp } from "react-icons/io5";
 import { AiOutlineClose } from "react-icons/ai";
+import logo from '../assets/logo.png'
 
 const Navbar = () => {
   const [menuicon, setMenuicon] = useState(false);
@@ -22,7 +23,7 @@ const Navbar = () => {
         {/* Main Navbar */}
         <div className='flex justify-between px-5 md:px-10 items-center h-20'>
           <div>
-            <p className='text-[20px] md:text-xl font-bold'>Logo</p>
+            <p className='text-[20px] md:text-xl font-bold'><img className='h-20' src={logo} alt="" /></p>
           </div>
 
           {/* Desktop Menu */}
