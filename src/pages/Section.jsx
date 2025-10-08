@@ -6,7 +6,7 @@ const Section = () => {
    <>
    <div>
     <div className=' flex justify-center mt-8'>
-        <p className='py-1 bg-blue-950 text-white text-xl w-180 rounded-2xl text-center'>SUMMER T-Shirt SALE 30%</p>
+        <p className='py-1 bg-blue-950 text-white text-xl w-90 md:w-180 rounded-2xl text-center'>SUMMER T-Shirt SALE 30%</p>
     </div>
     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center'>
     <div  className=' rounded-2xl w-90 shadow-2xl mt-10'>
@@ -73,11 +73,11 @@ const Section = () => {
    </div>
    <footer>
    <div className='flex justify-center '>
-     <div className='border-t-3 border-gray-500 mt-20  w-300  '></div>
+     <div className='border-t-3 border-gray-500 mt-20  w-90 md:w-180 lg:w-300  '></div>
    </div>
    <div className='flex items-center justify-around'>
-    <img className='h-25 mt-5' src={logo} alt="logo" />
-    <p>Copyright © 2025 page by Arif</p>
+    <img className='h-20 md:h-25 mt-5' src={logo} alt="logo" />
+    <p className=' mt-3 md:mt-0 text-sm md:text-xl'>Copyright © 2025 page by Arif</p>
    </div>
    </footer>
    </>
