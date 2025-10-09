@@ -36,7 +36,7 @@ const Navbar = () => {
 
           {/* Mobile Menu */}
           {menuicon ? (
-            <div className='absolute top-0 left-0 bg-yellow-300 w-full h-screen flex flex-col items-center justify-center gap-4 z-50'>
+            <div className='absolute top-0 left-0 bg-yellow-300 px-11 h-80 fixed  ml-55 lg:hidden flex flex-col items-center justify-center gap-4 z-50'>
               <AiOutlineClose className='text-[27px]' onClick={handleclickbtn} />
               <p>Logout</p>
               <p className='flex items-center gap-1'><CiHeart />Wish List</p>
