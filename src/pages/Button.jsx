@@ -1,17 +1,26 @@
 import React from 'react'
 
 import clothes from '../assets/clothes.jpg'; 
+import { Link } from 'react-router-dom';
 const Button = () => {
   return (
      <>
      <div className='py-10 flex-col  md:flex-row flex items-center justify-center  md:flex md:justify-center gap-2  '>
         <div className='flex gap-2'>
+         <Link to={"/electronics"}>
          <button className='border px-6.5 md:px-6 lg:px-8 py-3 bg-white text-black hover:bg-blue-950 hover:text-white'>ELECTRONICS</button>
-        <button className='border px-6.5 md:px-6 lg:px-8 py-3 bg-white text-black hover:bg-blue-950 hover:text-white'>MEN'S CLOTHING</button>
+         </Link>
+         <Link to={"/womens"}>
+          <button className='border px-6.5 md:px-6 lg:px-8 py-3 bg-white text-black hover:bg-blue-950 hover:text-white'>MEN'S CLOTHING</button>
+         </Link>
         </div>
         <div className='flex gap-2'>
+         <Link to={"/jewelery"}>
          <button className='border px-6.5 md:px-6 lg:px-8 py-3 bg-white text-black hover:bg-blue-950 hover:text-white'>JEWELERY</button>
+         </Link>
+        <Link to={"/mensclothing"}>
         <button className='border px-6.5 md:px-6 lg:px-8 py-3 bg-white text-black hover:bg-blue-950 hover:text-white'>WOMEN'S CLOTHING</button>
+        </Link>
 
         </div>
 

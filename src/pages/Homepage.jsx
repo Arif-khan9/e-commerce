@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
 import Navbar from '../Components/Navbar';
+import Button from '../pages/Button'
+import Section from '../pages/Section'
 
 const Homepage = () => {
   const [slide, setSlide] = useState([]);
@@ -14,7 +16,7 @@ const Homepage = () => {
       const categories = ["men's clothing", "women's clothing", "jewelery", "electronics"];
       const selected = categories
         .map(cat => data.find(item => item.category === cat))
-        .filter(Boolean);
+        
 
       setSlide(selected);
     } catch (error) {
@@ -41,6 +43,7 @@ const Homepage = () => {
   return (
     <>
     <Navbar/>
+   
     <section className='flex flex-col items-center justify-center py-10 px-5 bg-gradient-to-b from-gray-900 via-gray-800 to-black'>
       {slide.length > 0 && (
         <div className='relative w-full md:w-[80%] lg:w-[70%] h-[400px] md:h-[550px] flex items-center justify-center rounded-3xl shadow-2xl overflow-hidden'>
@@ -75,6 +78,8 @@ const Homepage = () => {
         </div>
       )}
     </section>
+     <Button/>
+    <Section/>
     </>
     
   );
