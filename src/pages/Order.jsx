@@ -21,7 +21,7 @@ const Order = () => {
             <option value="">XXL</option>
             <option value="">S</option>
         </select>
-        <button className='px-8 py-3 bg-blue-800 text-white mt-5 rounded-full hover:bg-blue-500'>Add to Cart</button>
+        <button className='px-8 py-3 bg-blue-800 text-white mt-5 rounded-full hover:bg-blue-500 mb-15 md:mb-0 '>Add to Cart</button>
         </div>
     </div>
    </div>
