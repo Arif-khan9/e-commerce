@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 
 
@@ -28,8 +29,7 @@ const Electronics = () => {
     </div>
     <div className='flex flex-col lg:flex-row justify-between px-15 mt-10 lg:gap-0 gap-3 '>
         <div className='flex gap-2.5 flex-col lg:flex-row'>
-            <button className='border px-6 py-2.5 rounded-full hover:bg-gray-400 hover:text-white'>MALE</button>
-            <button className='border px-6 py-2.5 rounded-full hover:bg-gray-400 hover:text-white'>FEMALE</button>
+           
             <button className='border px-6 py-2.5 rounded-full hover:bg-gray-400 hover:text-white'>HIGH PRICE</button>
             <button className='border px-6 py-2.5 rounded-full hover:bg-gray-400 hover:text-white'>SELECT A COLORE</button>
             <button className='border px-6 py-2.5 rounded-full hover:bg-gray-400 hover:text-white'>SELECT A SIZE</button>
@@ -42,6 +42,7 @@ const Electronics = () => {
          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center mt-10 gap-15 px-10 '>
             {card.map((item , index)=>{
               return(
+               <Link to={'/order'}>
                 <div key={index} className=' w-90 rounded-2xl  shadow-2xl'>
                 <img className='h-70 rounded-t-2xl w-full object-contain' src={item.image } alt="" />
                 <div className='px-3'>
@@ -57,6 +58,7 @@ const Electronics = () => {
                 </div>
                 </div>
             </div>  
+               </Link>
               )
             })}
             

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 const Womens = () => {
 
@@ -28,8 +29,25 @@ const Womens = () => {
                 <button className='border px-6 py-2.5 rounded-full hover:bg-gray-400 hover:text-white'>MALE</button>
                 <button className='border px-6 py-2.5 rounded-full hover:bg-gray-400 hover:text-white'>FEMALE</button>
                 <button className='border px-6 py-2.5 rounded-full hover:bg-gray-400 hover:text-white'>HIGH PRICE</button>
-                <button className='border px-6 py-2.5 rounded-full hover:bg-gray-400 hover:text-white'>SELECT A COLORE</button>
-                <button className='border px-6 py-2.5 rounded-full hover:bg-gray-400 hover:text-white'>SELECT A SIZE</button>
+                <select name="" id="" className='border px-6 py-2.5 rounded-full hover:bg-gray-400 hover:text-white'>
+                <option value="">SELECT A COLOR</option>
+                <option value="">Green</option>
+                <option value="">Red</option>
+                <option value="">Yellow</option>
+                <option value="">Blue</option>
+                <option value="">Pink</option>
+                <option value="">Black</option>
+                <option value="">Gray</option>
+
+            </select>
+            <select name="" id="" className='border px-6 py-2.5 rounded-full hover:bg-gray-400 hover:text-white'>
+                <option value="">SELECT A SIZE</option>
+                <option value="">XXL</option>
+                <option value="">XL</option>
+                <option value="">S</option>
+                <option value="">XS</option>
+                
+            </select>
             </div>
             <div>
                 <button className='border px-6 py-2.5 rounded-full hover:bg-gray-400 hover:text-white'>CLEAR FILTER</button>
@@ -40,6 +58,7 @@ const Womens = () => {
                 {
                     card.map((item , index )=>{
                         return(
+                            <Link to={'/order'}>
                              <div key={index} className=' w-90 rounded-2xl  shadow-2xl'>
                     <img className='h-70 rounded-t-2xl w-full object-contain' src={item.image } alt="" />
                     <div className='px-3'>
@@ -55,6 +74,7 @@ const Womens = () => {
                     </div>
                     </div>
                 </div>
+                            </Link>
                         )
                     })
                 }

@@ -9,6 +9,7 @@ import Electronics from "./pages/Electronics";
 import Womens from "./pages/Womens";
 import Jewelery from "./pages/Jewelery";
 import Mensclothing from "./pages/Mensclothing";
+import Order from "./pages/Order";
 
 
 const App = () => {
@@ -17,7 +18,7 @@ const App = () => {
   return (
     <>
     
-      <Routes>
+       <Routes>
         {/* <Route path="/" element={<Navigate to="/login" replace />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} /> */}
@@ -27,17 +28,12 @@ const App = () => {
         <Route path="womens" element={ <Womens/> }/>
         <Route path="jewelery" element={ <Jewelery/> }/>
         <Route path="mensclothing" element={ <Mensclothing/> }/>
-
-      
-      
-      
-      
-
-      </Routes>
+        <Route path="order" element={<Order/>}/>
+      </Routes> 
 
 
      
-
+     
 
       
     </>
