@@ -48,7 +48,7 @@ const Homepage = () => {
       {slide.length > 0 && (
         <div className='relative w-full md:w-[80%] lg:w-[70%] h-[400px] md:h-[550px] flex items-center justify-center rounded-3xl shadow-2xl overflow-hidden'>
 
-          {/* Left Button */}
+          
           <button
             onClick={handlePrev}
             className='absolute left-3 md:left-6 bg-black/60 text-white p-3 md:p-4 rounded-full hover:bg-black transition z-10'
@@ -56,7 +56,7 @@ const Homepage = () => {
             <FaArrowLeft size={20} />
           </button>
 
-          {/* Image */}
+       
           <div className='w-full h-full flex flex-col items-center justify-center bg-gray-900'>
             <img
               src={slide[currentIndex].image}
@@ -68,7 +68,7 @@ const Homepage = () => {
             </p>
           </div>
 
-          {/* Right Button */}
+         
           <button
             onClick={handleNext}
             className='absolute right-3 md:right-6 bg-black/60 text-white p-3 md:p-4 rounded-full hover:bg-black transition z-10'

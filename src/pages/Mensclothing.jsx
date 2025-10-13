@@ -19,6 +19,10 @@ const Mensclothing = () => {
           useEffect(()=>{
             cardFetchapi()
           },[])
+
+     
+
+
   return (
    <>
    <div className='mt-10 px-15'>
@@ -58,7 +62,7 @@ const Mensclothing = () => {
             {
                 card.map((item , index)=>{
                  return(
-                   <Link to={'/order'}>
+                   <Link to={`/order/${item.id}`}>
                     <div key={index} className=' w-90 rounded-2xl  shadow-2xl'>
                    <img className='h-70 rounded-t-2xl w-full object-contain' src={item.image } alt="" />
                    <div className='px-3'>
@@ -77,13 +81,7 @@ const Mensclothing = () => {
                    </Link>
                  )   
                 })
-            }
-               
-               
-               
-               
-               
-               
+            }  
            </div>
        </section>
    </>

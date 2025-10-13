@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 const Womens = () => {
 
      const[card , setCard] = useState([])
+
+      
+        const {categorie} = useParams()
         
            const cardFetchapi = async ()=>{
             try{
-                const res = await fetch("https://e-commerce-backened-4fih.onrender.com/products")
+                const res = await fetch(`https://e-commerce-backened-4fih.onrender.com/products/${categorie}`)
                 const data = await res.json()
                 console.log(data)
                 setCard(data)
-                 setCard(data.slice(0, 4))
+                 
             }catch(error){
                 console.log(error, "error")
             }
@@ -19,6 +22,9 @@ const Womens = () => {
           useEffect(()=>{
             cardFetchapi()
           },[])
+
+   
+
   return (
     <>
     <div className='mt-10 px-15'>
@@ -58,7 +64,7 @@ const Womens = () => {
                 {
                     card.map((item , index )=>{
                         return(
-                            <Link to={'/order'}>
+                            <Link to={`/order/${item.id}`}>
                              <div key={index} className=' w-90 rounded-2xl  shadow-2xl'>
                     <img className='h-70 rounded-t-2xl w-full object-contain' src={item.image } alt="" />
                     <div className='px-3'>

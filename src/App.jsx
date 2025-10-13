@@ -5,10 +5,10 @@ import { Route, Routes, Navigate } from "react-router-dom";
 
  import Homepage from "./pages/Homepage";
 
-import Electronics from "./pages/Electronics";
+// import Electronics from "./pages/Electronics";
 import Womens from "./pages/Womens";
-import Jewelery from "./pages/Jewelery";
-import Mensclothing from "./pages/Mensclothing";
+// import Jewelery from "./pages/Jewelery";
+// import Mensclothing from "./pages/Mensclothing";
 import Order from "./pages/Order";
 
 
@@ -24,11 +24,11 @@ const App = () => {
         <Route path="/signup" element={<Signup />} /> */}
 
         <Route path="/" element={ <Homepage/>}/>
-        <Route path="electronics" element={  <Electronics/>}/>
-        <Route path="womens" element={ <Womens/> }/>
-        <Route path="jewelery" element={ <Jewelery/> }/>
-        <Route path="mensclothing" element={ <Mensclothing/> }/>
-        <Route path="order" element={<Order/>}/>
+        {/* <Route path="electronics" element={  <Electronics/>}/> */}
+        <Route path="/:categorie" element={ <Womens/> }/>
+        {/* <Route path="jewelery" element={ <Jewelery/> }/> */}
+        {/* <Route path="mensclothing" element={ <Mensclothing/> }/> */}
+        <Route path="order/:id" element={<Order/>}/>
       </Routes> 
 
 

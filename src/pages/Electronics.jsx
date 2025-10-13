@@ -7,20 +7,24 @@ const Electronics = () => {
 
    const[card , setCard] = useState([])
 
-   const cardFetchapi = async ()=>{
-    try{
+
+  const fetchOrderData  = async() =>{
+      try{
         const res = await fetch("https://e-commerce-backened-4fih.onrender.com/products")
         const data = await res.json()
         console.log(data)
-        setCard(data)
+        // setCard(data)
          setCard(data.slice(9, 14))
     }catch(error){
         console.log(error, "error")
     }
-   }
-  useEffect(()=>{
-    cardFetchapi()
-  },[])
+  }
+
+   useEffect(()=>{
+    fetchOrderData()
+  },[]);
+
+  
 
   return (
     <>
@@ -42,7 +46,7 @@ const Electronics = () => {
          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center mt-10 gap-15 px-10 '>
             {card.map((item , index)=>{
               return(
-               <Link to={'/order'}>
+               <Link to={`/order/${item.id}`}>
                 <div key={index} className=' w-90 rounded-2xl  shadow-2xl'>
                 <img className='h-70 rounded-t-2xl w-full object-contain' src={item.image } alt="" />
                 <div className='px-3'>
