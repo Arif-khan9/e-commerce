@@ -30,7 +30,7 @@ const Order = () => {
   return (
     <>
    <div className='flex justify-center items-center h-180 gap-10 flex-col  md:flex-col lg:flex-row'>
-    <div><img className='md:h-150 w-85   md:w-150 object-contain mt-90 md:mt-0' src={card.image} alt="" /></div>
+    <div><img className='md:h-150 w-85   md:w-150 object-contain mt-90 md:mt-0' src={card.image || card.thumbnail} alt="" /></div>
     <div className='md:h-120 md:w-130  px-5 '>
         <h1 className='text-4xl font-bold'>{card.category}</h1>
         <p className='text-2xl font-bold text-green-500 mt-2'>15% OFF</p>

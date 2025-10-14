@@ -27,7 +27,7 @@ const Button = () => {
       <div className="py-10 flex flex-col items-center">
         <div
           className="flex gap-3 overflow-x-auto no-scrollbar px-4 w-full max-w-[90vw]"
-          style={{ scrollBehavior: 'smooth', WebkitOverflowScrolling: 'touch' }}
+          
         >
           {categories.map((categorie, index) => (
             <Link key={index} to={`/${categorie}`}>

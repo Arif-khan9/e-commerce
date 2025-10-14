@@ -9,7 +9,7 @@ const Section = () => {
       const res = await fetch("https://e-commerce-backened-4fih.onrender.com/products")
       const data = await res.json()
       console.log(data)
-      setCard(data)
+      setCard(data.slice(0,20))
     } catch (error) {
       console.log("Error fetching data:", error)
     }
@@ -30,27 +30,12 @@ const Section = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:px-20 lg:grid-cols-3 place-items-center">
           {card.map((item, index) => {
-            // ✅ Safe image check (covers all possible keys)
-            const imageUrl =
-              item.image?.startsWith('http')
-                ? item.image
-                : item.img?.startsWith('http')
-                ? item.img
-                : item.thumbnail?.startsWith('http')
-                ? item.thumbnail
-                : item.image
-                ? `https://e-commerce-backened-4fih.onrender.com${item.image}`
-                : item.img
-                ? `https://e-commerce-backened-4fih.onrender.com${item.img}`
-                : item.thumbnail
-                ? `https://e-commerce-backened-4fih.onrender.com${item.thumbnail}`
-                : null
-
+          
             return (
               <div key={index} className="rounded-2xl w-90 bg-blue-50 mt-10">
                 <img
                   className="h-90 rounded-2xl w-full object-contain"
-                  src={imageUrl || logo} // fallback to logo if no image found
+                  src={item.image} 
                   alt={item.title || 'product'}
                 />
 
@@ -59,7 +44,7 @@ const Section = () => {
                   <p className="mt-3">{item.description?.slice(0, 120)}</p>
                   <p className="mt-3">Size left : XL</p>
 
-                  {/* ✅ Corrected color section */}
+                  
                   <div className="mt-3 flex items-center gap-3">
                     <span>Color:</span>
                     <div className="h-4 w-4 bg-indigo-400 rounded-full"></div>

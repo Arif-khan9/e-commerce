@@ -7,13 +7,15 @@ const Womens = () => {
 
       
         const {categorie} = useParams()
+        console.log("categorie",categorie)
         
            const cardFetchapi = async ()=>{
             try{
-                const res = await fetch(`https://e-commerce-backened-4fih.onrender.com/products/${categorie}`)
+                const res = await fetch(`https://e-commerce-backened-4fih.onrender.com/categories/${categorie}`)
                 const data = await res.json()
                 console.log(data)
                 setCard(data)
+                
                  
             }catch(error){
                 console.log(error, "error")
@@ -22,6 +24,8 @@ const Womens = () => {
           useEffect(()=>{
             cardFetchapi()
           },[])
+
+          
 
    
 
@@ -66,9 +70,9 @@ const Womens = () => {
                         return(
                             <Link to={`/order/${item.id}`}>
                              <div key={index} className=' w-90 rounded-2xl  shadow-2xl'>
-                    <img className='h-70 rounded-t-2xl w-full object-contain' src={item.image } alt="" />
+                    <img className='h-70 rounded-t-2xl w-full object-contain' src={item.thumbnail || item.image } alt="" />
                     <div className='px-3'>
-                        <h3 className='text-xl font-bold mt-4'>{item. category}</h3>
+                        <h3 className='text-xl font-bold mt-4'>{item.category}</h3>
                     <p className='mt-2'>{item.description.slice(0,120)}</p>
                     <div className='flex mt-1 items-center justify-between py-2'>
                         <p>${item.price}</p>
