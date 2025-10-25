@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-// import image from '../assets/tishrt.jpg'
 import { useParams } from 'react-router-dom'
 const Order = () => {
 
@@ -30,11 +29,11 @@ const Order = () => {
   return (
     <>
    <div className='flex justify-center items-center h-180 gap-10 flex-col  md:flex-col lg:flex-row'>
-    <div><img className='md:h-150 w-85   md:w-150 object-contain mt-90 md:mt-0' src={card.image || card.thumbnail} alt="" /></div>
+    <div><img className='md:h-150 w-85   md:w-150 object-contain mt-90 md:mt-0' src={card.images || card.image} alt="" /></div>
     <div className='md:h-120 md:w-130  px-5 '>
         <h1 className='text-4xl font-bold'>{card.category}</h1>
         <p className='text-2xl font-bold text-green-500 mt-2'>15% OFF</p>
-        <p className='text-xl mt-3 '>{card.description.slice(0,250)}</p>
+        <p className='text-xl mt-3 '>{card.description.slice(0,100)}</p>
         <div className='flex flex-col items-start'>
             <select name="" id="" className= ' w-80 md:w-120 py-3 mt-8 border bg-blue-900 text-white px-2'>
             <option value="">BLUE</option>

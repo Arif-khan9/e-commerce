@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
 import Navbar from '../Components/Navbar';
-import Button from '../pages/Button'
-import Section from '../pages/Section'
+import Button from '../Components/Button'
+import Section from '../Components/Section'
 
 const Homepage = () => {
   const [slide, setSlide] = useState([]);

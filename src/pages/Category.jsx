@@ -8,15 +8,16 @@ const Womens = () => {
 
   const cardFetchapi = async () => {
     try {
-      setLoading(true);
+      
       const res = await fetch(
         `https://e-commerce-backened-4fih.onrender.com/categories/${categorie}`
       );
       const data = await res.json();
       setCard(data);
+      console.log("data",data)
     } catch (error) {
       console.log("Error:", error);
-      setCard([]);
+     
     } finally {
       setLoading(false);
     }

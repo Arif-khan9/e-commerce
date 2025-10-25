@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
 import { CiHeart } from "react-icons/ci";
 import { FaShoppingBag } from "react-icons/fa";
 import { IoMenuSharp } from "react-icons/io5";
 import { AiOutlineClose } from "react-icons/ai";
 import logo from '../assets/logo.png'
+import { contextApi } from './Authstatus';
+
 
 const Navbar = () => {
   const [menuicon, setMenuicon] = useState(false);
@@ -11,7 +13,8 @@ const Navbar = () => {
   const handleclickbtn = () => {
     setMenuicon(!menuicon);
   };
-
+const bio = useContext(contextApi)
+console.log(bio)
   return (
     <header>
       <nav>
