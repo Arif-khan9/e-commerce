@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { FaGoogle } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { contextApi } from '../Components/Authstatus';
+import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
+  const navigate = useNavigate()
+  const objectName = useContext(contextApi)
   const [icon, setIcon] = useState(false);
   const [contact, setContact] = useState({
+
     name: "",
     password: "",
   });
@@ -16,6 +21,8 @@ const Signup = () => {
   };
 
   const handleSubmit = async (e) => {
+   console.log("ghjk");
+   
     e.preventDefault();
     if (contact.name.trim() && contact.password.trim()) {
       const res = await fetch("https://e-commerce-backened-4fih.onrender.com/signup", {
@@ -26,7 +33,8 @@ const Signup = () => {
           password: contact.password.toLowerCase(),
         }),
       });
-      console.log(res.status);
+      objectName.setUserName(contact.name)
+      navigate("/")
     }
   };
 

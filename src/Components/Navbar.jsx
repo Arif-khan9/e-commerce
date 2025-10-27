@@ -8,6 +8,7 @@ import { contextApi } from './Authstatus';
 
 
 const Navbar = () => {
+
   const [menuicon, setMenuicon] = useState(false);
 
   const handleclickbtn = () => {
@@ -34,7 +35,7 @@ console.log(bio)
             <p>Logout</p>
             <p className='flex items-center gap-1'><CiHeart />Wish List</p>
             <p className='flex items-center gap-1'><FaShoppingBag />Shopping Bag</p>
-            <p>Hi User</p>
+            <p>Hi {bio.userName }</p>
           </div>
 
           {/* Mobile Menu */}
