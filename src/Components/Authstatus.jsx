@@ -4,7 +4,7 @@ import React, { createContext, useState } from 'react'
 export const contextApi = createContext()
 const Authstatus = ({children}) => {
     
-const [userName , setUserName]=useState("")
+const [userName , setUserName]=useState(localStorage.getItem("userName") || "")
 const [isAuthenticated , setIsAuthentcated] = useState(false)
     
   return (

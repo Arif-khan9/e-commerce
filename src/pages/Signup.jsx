@@ -10,7 +10,6 @@ const Signup = () => {
   const objectName = useContext(contextApi)
   const [icon, setIcon] = useState(false);
   const [contact, setContact] = useState({
-
     name: "",
     password: "",
   });
@@ -33,7 +32,9 @@ const Signup = () => {
           password: contact.password.toLowerCase(),
         }),
       });
+
       objectName.setUserName(contact.name)
+      localStorage.setItem("userName", contact.name)
       navigate("/")
     }
   };

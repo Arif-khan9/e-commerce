@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { FaGoogle } from "react-icons/fa6";
-import { Link } from 'react-router-dom';
+import { Link ,useNavigate } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
+
 const Login = () => {
+  const navigate = useNavigate()
   const [icon, setIcon] = useState(false);
   const [login, setLogin] = useState({
     name: "",
@@ -24,6 +26,8 @@ const Login = () => {
         body: JSON.stringify({ username: login.name, password: login.password }),
       });
       console.log(res.status);
+      navigate("/")
+      localStorage.setItem("userName",login.name)
     }
   };
 
