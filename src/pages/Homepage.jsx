@@ -5,6 +5,7 @@ import Button from '../Components/Button'
 import Section from '../Components/Section'
 
 const Homepage = () => {
+  const selectedCategories = []
   const [slide, setSlide] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loading, setLoading] = useState(true); 
@@ -14,10 +15,17 @@ const Homepage = () => {
       setLoading(true);
       const res = await fetch("https://e-commerce-backened-4fih.onrender.com/products");
       const data = await res.json();
-
-      const categories = ["men's clothing", "women's clothing", "jewelery", "electronics"];
-      const selected = categories.map(cat => data.find(item => item.category === cat));
-      setSlide(selected);
+      const sliderData = data.products
+      const filteredCategory = sliderData.filter(item => {
+        if(selectedCategories.includes(item.category)){
+          return false
+        }else{
+          selectedCategories.push(item.category)
+          return true
+        }
+        
+      } ) 
+      setSlide(filteredCategory)
     } catch (error) {
       console.log("Error fetching slides:", error);
     } finally {
