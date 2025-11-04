@@ -83,8 +83,8 @@ const Section = () => {
             ))}
       </div>
 
-      <footer className="mt-20 border-t border-gray-400 pt-6 pb-10 flex ">
-        <div className="flex flex-col md:flex-row items-center justify-center gap-4">
+      <footer className="mt-20 border-t border-gray-400 pt-6 pb-10  ">
+        <div className="flex flex-col md:flex-row items-center justify-around gap-4">
           <img className="h-16 md:h-20" src={logo} alt="logo" />
           <p className="text-center text-gray-700 text-sm md:text-base">
             © 2025 Page by Arif
