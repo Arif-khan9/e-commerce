@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
 import Navbar from '../Components/Navbar';
 import Button from '../Components/Button'
 import Section from '../Components/Section'
 
 const Homepage = () => {
-  const selectedCategories = []
+  const selectedCategories = useRef([])
   const [slide, setSlide] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loading, setLoading] = useState(true); 
@@ -17,15 +17,16 @@ const Homepage = () => {
       const data = await res.json();
       const sliderData = data.products
       const filteredCategory = sliderData.filter(item => {
-        if(selectedCategories.includes(item.category)){
+        if(selectedCategories.current.includes(item.category)){
           return false
         }else{
-          selectedCategories.push(item.category)
+          selectedCategories.current.push(item.category)
           return true
         }
         
       } ) 
       setSlide(filteredCategory)
+      // console.log("filteredCategory",filteredCategory)
     } catch (error) {
       console.log("Error fetching slides:", error);
     } finally {
@@ -74,7 +75,7 @@ const Homepage = () => {
             
               <div className="w-full h-full flex flex-col items-center justify-center bg-gray-900">
                 <img
-                  src={slide[currentIndex].image}
+                  src={slide[currentIndex].thumbnail}
                   alt={slide[currentIndex].title}
                   className="max-h-full max-w-full object-contain rounded-2xl drop-shadow-lg"
                 />
