@@ -5,7 +5,7 @@ export const contextApi = createContext()
 const Authstatus = ({children}) => {
     
 const [userName , setUserName]=useState(localStorage.getItem("userName") || "")
-const [isAuthenticated , setIsAuthentcated] = useState(false)
+const [isAuthenticated , setIsAuthentcated] = useState(localStorage.getItem("isAuthenticated")|| false)
     
   return (
     <div>

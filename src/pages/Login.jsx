@@ -85,7 +85,7 @@ const Login = () => {
             <button className='flex items-center gap-2 px-8 py-3 border border-gray-400 rounded-xl'>
               <FaGoogle /> Sign in with Google
             </button>
-            <Link to={"/signup"}>
+            <Link to={"/"}>
               <p className='text-gray-400'>
                 Don’t have an account? <span className='text-blue-600 underline'>Sign up</span>
               </p>

@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
   const navigate = useNavigate()
-  const objectName = useContext(contextApi)
+  const {setUserName,isAuthenticated,setIsAuthentcated} = useContext(contextApi)
   const [icon, setIcon] = useState(false);
   const [contact, setContact] = useState({
     name: "",
@@ -33,7 +33,9 @@ const Signup = () => {
         }),
       });
 
-      objectName.setUserName(contact.name)
+      setUserName(contact.name)
+      setIsAuthentcated(true)
+      localStorage.setItem("isAuthenticated", true)
       localStorage.setItem("userName", contact.name)
       navigate("/")
     }
