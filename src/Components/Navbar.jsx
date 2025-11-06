@@ -1,21 +1,40 @@
-import React, { useState,useContext } from 'react';
+import React, { useState,useContext,useEffect } from 'react';
 import { CiHeart } from "react-icons/ci";
 import { FaShoppingBag } from "react-icons/fa";
 import { IoMenuSharp } from "react-icons/io5";
 import { AiOutlineClose } from "react-icons/ai";
 import logo from '../assets/logo.png'
 import { contextApi } from './Authstatus';
+import { useNavigate } from 'react-router-dom';
+
 
 
 const Navbar = () => {
 
+   const navigate = useNavigate()
   const [menuicon, setMenuicon] = useState(false);
 
   const handleclickbtn = () => {
     setMenuicon(!menuicon);
   };
-const bio = useContext(contextApi)
-console.log(bio)
+const {setUserName , userName , setIsAuthentcated ,isAuthenticated} = useContext(contextApi)
+
+ const handleLogout = ()=>{
+   localStorage.removeItem("userName" )
+   localStorage.removeItem("isAuthenticated")
+     setIsAuthentcated(false);
+  setUserName("");
+
+  navigate("/login")
+  console.log("navigate")
+
+ }
+
+ useEffect(() => {
+  console.log("isAuthenticated:", isAuthenticated);
+  console.log("userName:", userName);
+}, [isAuthenticated, userName]);
+
   return (
     <header>
       <nav>
@@ -32,10 +51,10 @@ console.log(bio)
 
           
           <div className='hidden md:flex gap-5 items-center text-[15px] md:text-xl'>
-            <p>Logout</p>
+            <p onClick={handleLogout} className='hover:text-gray-500 '>Logout</p>
             <p className='flex items-center gap-1'><CiHeart />Wish List</p>
             <p className='flex items-center gap-1'><FaShoppingBag />Shopping Bag</p>
-            <p>Hi {bio.userName }</p>
+            <p>Hi {userName }</p>
           </div>
 
          

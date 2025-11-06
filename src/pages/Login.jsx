@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { FaGoogle } from "react-icons/fa6";
 import { Link ,useNavigate } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { contextApi } from '../Components/Authstatus';
 
 
 const Login = () => {
+  const {setIsAuthentcated,setUserName} = useContext(contextApi)
   const navigate = useNavigate()
   const [icon, setIcon] = useState(false);
   const [login, setLogin] = useState({
@@ -24,8 +26,14 @@ const Login = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username: login.name, password: login.password }),
+
       });
-      console.log(res.status);
+      const data = await res.json()
+      console.log("data",data)
+      setIsAuthentcated(true)
+      setUserName(login.name)
+       localStorage.setItem("isAuthenticated", true)
+      localStorage.setItem("userName", login.name)
       navigate("/")
       localStorage.setItem("userName",login.name)
     }
@@ -48,6 +56,7 @@ const Login = () => {
               value={login.name}
               onChange={handleinputchange}
             />
+
 
             <div className='flex items-center'>
               <input
