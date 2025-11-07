@@ -1,42 +1,50 @@
 import React, { useContext, useState } from 'react';
 import { FaGoogle } from "react-icons/fa6";
-import { Link ,useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { contextApi } from '../Components/Authstatus';
 
-
 const Login = () => {
-  const {setIsAuthentcated,setUserName} = useContext(contextApi)
-  const navigate = useNavigate()
+  const { setIsAuthentcated, setUserName } = useContext(contextApi);
+  const navigate = useNavigate();
   const [icon, setIcon] = useState(false);
+  const [error, setError] = useState("");
   const [login, setLogin] = useState({
     name: "",
     password: "",
   });
 
-  const handleinputchange = (e) => {
+  const handleInputChange = (e) => {
     const { name, value } = e.target;
     setLogin((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmitform = async (e) => {
+  const handleSubmitForm = async (e) => {
     e.preventDefault();
-    if (login.name.trim() && login.password.trim()) {
-      const res = await fetch("https://e-commerce-backened-4fih.onrender.com/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username: login.name, password: login.password }),
-
-      });
-      const data = await res.json()
-      console.log("data",data)
-      setIsAuthentcated(true)
-      setUserName(login.name)
-       localStorage.setItem("isAuthenticated", true)
-      localStorage.setItem("userName", login.name)
-      navigate("/")
-      localStorage.setItem("userName",login.name)
-    }
+    try {
+      if (login.name.trim() && login.password.trim()) {
+        const res = await fetch("https://e-commerce-backened-4fih.onrender.com/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username: login.name, password: login.password }),
+        });
+        if(res.ok){
+        setIsAuthentcated(true);
+        setUserName(login.name);
+        localStorage.setItem("isAuthenticated", true);
+        localStorage.setItem("userName", login.name);
+        navigate("/");
+        }else{
+         const resData = await res.json()
+         setError(resData)
+         console.log("resData",resData)
+        }
+        
+      }
+    } catch (err) {
+      console.error(err);
+      setError("Something went wrong. Please try again later.");
+    } 
   };
 
   return (
@@ -45,7 +53,13 @@ const Login = () => {
         <p className='mt-2 text-gray-400'>Please enter your details</p>
         <h1 className='mt-3 text-2xl font-bold'>Welcome back</h1>
 
-        <form onSubmit={handleSubmitform}>
+        {error && (
+          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded mt-3">
+            {error}
+          </div>
+        )}
+
+        <form onSubmit={handleSubmitForm}>
           <div className='flex flex-col justify-center items-center gap-5 mt-5'>
             <input
               className='border border-gray-400 rounded-xl p-3 w-80'
@@ -54,9 +68,8 @@ const Login = () => {
               name='name'
               required
               value={login.name}
-              onChange={handleinputchange}
+              onChange={handleInputChange}
             />
-
 
             <div className='flex items-center'>
               <input
@@ -66,7 +79,7 @@ const Login = () => {
                 name='password'
                 required
                 value={login.password}
-                onChange={handleinputchange}
+                onChange={handleInputChange}
               />
               {icon ? (
                 <FaEye className='relative right-9 cursor-pointer' onClick={() => setIcon(false)} />
@@ -88,12 +101,17 @@ const Login = () => {
           </div>
 
           <div className='flex flex-col items-center justify-center mt-8 gap-5'>
-            <button className='bg-blue-600 px-10 py-3 text-white rounded-xl hover:bg-blue-500'>
-              Login
+            <button
+              className='bg-blue-600 px-10 py-3 text-white rounded-xl hover:bg-blue-500 disabled:opacity-50'
+              
+            >
+              login
             </button>
+
             <button className='flex items-center gap-2 px-8 py-3 border border-gray-400 rounded-xl'>
               <FaGoogle /> Sign in with Google
             </button>
+
             <Link to={"/"}>
               <p className='text-gray-400'>
                 Don’t have an account? <span className='text-blue-600 underline'>Sign up</span>
