@@ -9,6 +9,7 @@ const Signup = () => {
   const navigate = useNavigate()
   const {setUserName,isAuthenticated,setIsAuthentcated} = useContext(contextApi)
   const [icon, setIcon] = useState(false);
+  const [error , setError]= useState("")
   const [contact, setContact] = useState({
     name: "",
     password: "",
@@ -32,12 +33,19 @@ const Signup = () => {
           password: contact.password.toLowerCase(),
         }),
       });
-
+      if(res.ok){
+        console.log("res", res)
       setUserName(contact.name)
       setIsAuthentcated(true)
       localStorage.setItem("isAuthenticated", true)
       localStorage.setItem("userName", contact.name)
       navigate("/")
+      }else{
+        const resData = await res.json()
+         setError(resData)
+         console.log("resData",resData)
+      }
+     
     }
   };
 
@@ -46,6 +54,13 @@ const Signup = () => {
       <div className='bg-gray-100 shadow-sm px-5 py-5 rounded-xl'>
         <p className='mt-2 text-gray-400'>Please enter your details</p>
         <h1 className='mt-3 text-2xl font-bold'>Create Account</h1>
+
+
+        {error && (
+          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded mt-3">
+            {error}
+          </div>
+        )}
 
         <form onSubmit={handleSubmit}>
           <div className='flex flex-col justify-center items-center gap-5 mt-5'>
