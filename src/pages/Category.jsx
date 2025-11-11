@@ -1,7 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useContext } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { contextApi } from "../Components/Authstatus";
+import Login from "./Login";
+
 
 const Womens = () => {
+
+  const navigate = useNavigate()
+  const {isAuthenticated , userName} = useContext(contextApi)
+
   const [card, setCard] = useState([]); 
   const [loading, setLoading] = useState(true); 
   const { categorie } = useParams(); 
@@ -52,7 +60,7 @@ const Womens = () => {
   return (
     <>
      
-      <div className="mt-10 px-10">
+     {isAuthenticated && userName ? <><div className="mt-10 px-10">
         <p className="text-2xl font-bold text-gray-700 capitalize">
           {categorie || "Products"}
         </p>
@@ -61,35 +69,13 @@ const Womens = () => {
    
       <div className="flex flex-col lg:flex-row justify-between px-10 mt-10 gap-3">
         <div className="flex gap-2.5 flex-wrap">
-          <button className="border px-6 py-2.5 rounded-full hover:bg-gray-400 hover:text-white">
-            MALE
-          </button>
-          <button className="border px-6 py-2.5 rounded-full hover:bg-gray-400 hover:text-white">
-            FEMALE
-          </button>
+          
           <button
             onClick={priceBtn}
             className="border px-6 py-2.5 rounded-full hover:bg-gray-400 hover:text-white"
           >
             HIGH PRICE
           </button>
-          <select className="border px-6 py-2.5 rounded-full hover:bg-gray-400 hover:text-white">
-            <option>SELECT A COLOR</option>
-            <option>Green</option>
-            <option>Red</option>
-            <option>Yellow</option>
-            <option>Blue</option>
-            <option>Pink</option>
-            <option>Black</option>
-            <option>Gray</option>
-          </select>
-          <select className="border px-6 py-2.5 rounded-full hover:bg-gray-400 hover:text-white">
-            <option>SELECT A SIZE</option>
-            <option>XXL</option>
-            <option>XL</option>
-            <option>S</option>
-            <option>XS</option>
-          </select>
         </div>
 
         <div>
@@ -130,7 +116,7 @@ const Womens = () => {
               </div>
             ))
           ) : card.length > 0 ? (
-            // 🔹 Product Cards
+         
             card.map((item, index) => (
               <Link key={index} to={`/order/${item.id || item._id}`}>
                 <div className="w-72 h-[400px] bg-white rounded-2xl shadow-lg hover:shadow-gray-500 hover:scale-[1.02] transition-transform duration-300 overflow-hidden">
@@ -165,7 +151,8 @@ const Womens = () => {
             <p className="text-gray-500 text-lg">No products found for this category.</p>
           )}
         </div>
-      </section>
+      </section> </>: navigate("/login")}
+      
     </>
   );
 };
