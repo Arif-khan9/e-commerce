@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 import { useContext } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { contextApi } from "../Components/Authstatus";
 import Login from "./Login";
+import logo from '../assets/logo.png'
 
 
 const Womens = () => {
@@ -60,7 +62,18 @@ const Womens = () => {
   return (
     <>
      
-     {isAuthenticated && userName ? <><div className="mt-10 px-10">
+
+     {isAuthenticated && userName ? <>
+
+     <div className="px-10 mt-5">
+               <p className='text-[20px] md:text-xl font-bold '><Link to={"/"}><img className='h-20' src={logo} alt="" /></Link></p>
+               </div>
+     
+        <div > 
+          <button className="px-12 p-2 bg-blue-900 text-white rounded-full mt-10 ml-10 hover:bg-blue-950"  onClick={() => window.history.back()}><ChevronLeft className="w-6 h-6 black" /></button>
+          </div>
+     <div className="mt-10 px-10">
+      
         <p className="text-2xl font-bold text-gray-700 capitalize">
           {categorie || "Products"}
         </p>

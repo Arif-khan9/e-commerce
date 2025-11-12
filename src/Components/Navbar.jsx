@@ -59,13 +59,43 @@ const {setUserName , userName , setIsAuthentcated ,isAuthenticated} = useContext
 
          
           {menuicon ? (
-            <div className='absolute top-0 left-0 bg-yellow-300 px-11 h-80 fixed  ml-55 lg:hidden flex flex-col items-center justify-center gap-4 z-50'>
-              <AiOutlineClose className='text-[27px]' onClick={handleclickbtn} />
-              <p>Logout</p>
-              <p className='flex items-center gap-1'><CiHeart />Wish List</p>
-              <p className='flex items-center gap-1'><FaShoppingBag />Shopping Bag</p>
-              <p>Hi User</p>
-            </div>
+            <div
+  className="fixed top-0 right-0 h-screen w-[70%] sm:w-[60%] 
+             bg-gradient-to-b from-blue-100 to-blue-200 shadow-2xl
+             flex flex-col items-center justify-center gap-6 z-50 
+             rounded-l-3xl transition-transform duration-300 ease-in-out
+             animate-slide-in-right lg:hidden"
+>
+  {/* Close Button */}
+  <AiOutlineClose
+    className="text-[28px] text-blue-900 absolute top-5 left-5 cursor-pointer hover:text-blue-700 transition"
+    onClick={handleclickbtn}
+  />
+
+  
+  <p className="text-xl font-semibold text-blue-900 mr-17">
+    Hi, {userName || "Guest"} 
+  </p>
+
+  
+  <div className="flex flex-col items-start w-[80%] gap-4 mt-4">
+    <p
+      onClick={handleLogout}
+      className="w-full flex items-center gap-3 p-3 rounded-xl text-lg text-blue-900 hover:bg-blue-300 transition cursor-pointer"
+    >
+      Logout
+    </p>
+
+    <p className="w-full flex items-center gap-3 p-3 rounded-xl text-lg text-blue-900 hover:bg-blue-300 transition cursor-pointer">
+       Wish List
+    </p>
+
+    <p className="w-full flex items-center gap-3 p-3 rounded-xl text-lg text-blue-900 hover:bg-blue-300 transition cursor-pointer">
+      Shopping Bag
+    </p>
+  </div>
+</div>
+
           ) : (
             <IoMenuSharp className='md:hidden text-[25px]' onClick={handleclickbtn} />
           )}
