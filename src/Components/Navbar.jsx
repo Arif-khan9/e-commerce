@@ -5,12 +5,14 @@ import { IoMenuSharp } from "react-icons/io5";
 import { AiOutlineClose } from "react-icons/ai";
 import logo from '../assets/logo.png'
 import { contextApi } from './Authstatus';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 
 
 const Navbar = () => {
 
+  const cartItems = useSelector((state) => state.cart.items);
    const navigate = useNavigate()
   const [menuicon, setMenuicon] = useState(false);
 
@@ -53,14 +55,16 @@ const {setUserName , userName , setIsAuthentcated ,isAuthenticated} = useContext
           <div className='hidden md:flex gap-5 items-center text-[15px] md:text-xl'>
             <p onClick={handleLogout} className='hover:text-gray-500 '>Logout</p>
             <p className='flex items-center gap-1'><CiHeart />Wish List</p>
-            <p className='flex items-center gap-1'><FaShoppingBag />Shopping Bag</p>
-            <p>Hi {userName }</p>
-          </div>
+          <Link to={"/addtoart"}>
+  <p className="flex items-center gap-1">
+    <FaShoppingBag />
+    {cartItems.length > 0 && (<span>({cartItems.length})</span>)}Shopping Bag</p></Link>
+      <p>Hi {userName }</p>
+      </div>
 
-         
           {menuicon ? (
             <div
-  className="fixed top-0 right-0 h-screen w-[70%] sm:w-[60%] 
+             className="fixed top-0 right-0 h-screen w-[70%] sm:w-[60%] 
              bg-gradient-to-b from-blue-100 to-blue-200 shadow-2xl
              flex flex-col items-center justify-center gap-6 z-50 
              rounded-l-3xl transition-transform duration-300 ease-in-out

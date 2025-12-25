@@ -63,7 +63,7 @@ const Button = () => {
      
       <div className="flex justify-center mt-10">
         <img
-          className="w-[350px] md:w-[600px] h-auto shadow-2xl object-contain rounded-2xl"
+          className="w-[350px] md:w-[1200px] h-auto  object-contain rounded-2xl"
           src={clothes}
           alt="sale"
         />

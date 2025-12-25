@@ -3,8 +3,13 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 import { contextApi } from "./Authstatus";
 import logo from '../assets/logo.png'
+import { useDispatch } from "react-redux";
+import { addtobag } from "../../src/cartSliice";
 
 const Order = () => {
+
+  const dispatch = useDispatch()
+
   const [card, setCard] = useState(null);
   const [currentImg, setCurrentImg] = useState(0);
   const { id } = useParams();
@@ -37,6 +42,24 @@ const Order = () => {
     cardFetchapi();
   }, [id]);
 
+
+  const addToCartFun =()=>{
+    const quantity = 1;
+
+  const productInfo = {
+  img: card.thumbnail || card.image,
+  title: card.title,
+  description: card.description,
+  quantity: quantity,
+  price: card.price,
+  totalPrice: card.price * quantity
+   
+};
+
+     dispatch(addtobag(productInfo))
+
+  }
+
   if (!card) {
     return (
       <p className="text-center text-4xl mt-20 flex justify-center items-center">
@@ -48,6 +71,7 @@ const Order = () => {
   const images = Array.isArray(card.images)
     ? card.images
     : [card.thumbnail || card.image];
+    console.log("card",card)
 
   const nextImg = () => {
     setCurrentImg((prev) => (prev + 1) % images.length);
@@ -144,7 +168,7 @@ const Order = () => {
           )}
 
           <div className="flex flex-col items-start mt-5">
-            <button className="px-8 py-3 bg-blue-900 text-white rounded-full hover:bg-blue-950 transition">
+            <button className="px-8 py-3 bg-blue-900 text-white rounded-full hover:bg-blue-950 transition" onClick={addToCartFun}>
               Add to Cart
             </button>
           </div>

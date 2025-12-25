@@ -6,6 +6,8 @@ import Womens from "./pages/Category";
 import Order from "./Components/Order";
 import { useContext } from "react";
 import { contextApi } from "./Components/Authstatus";
+import Addtoart from "./Components/Addtocart";
+
 
 
 
@@ -16,8 +18,8 @@ const App = () => {
     <>
     
        <Routes>
+        <Route path="addtoart" element={< Addtoart/>}/>
         <Route path="/" element={isAuthenticated ? <Homepage/> :<Signup /> }  />
-
         <Route path="/login" element={<Login />} />
         <Route path="/:categorie" element={ <Womens/> }/>
         <Route path="order/:id" element={<Order/>}/>
