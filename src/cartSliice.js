@@ -37,7 +37,7 @@ const cartSlice = createSlice({
       localStorage.setItem("cartItems", JSON.stringify(state.items));
     },
 
-    // ✅ NEW: CLEAR CART AFTER ORDER CONFIRM
+    
     clearCart: (state) => {
       state.items = [];
       localStorage.removeItem("cartItems");

@@ -3,12 +3,14 @@ import {
   increment,
   decrement,
   removeFromBag,
-  clearCart,
+  
 } from "../../src/cartSliice";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Addtocart = () => {
+
+
   const [totalPrice, setTotalPrice] = useState(0);
   const [orderSuccess, setOrderSuccess] = useState(false);
 
@@ -35,6 +37,30 @@ const Addtocart = () => {
     );
   }
 
+  const handleStripeCheckout = async () => {
+  try {
+    const res = await fetch("https://e-commerce-backened-4fih.onrender.com/create-checkout-session", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    cartItems: cartData,
+    successUrl: window.location.origin + "/",
+    cancelUrl: window.location.origin + "/paymentFailed",
+  }),
+});
+
+    const data = await res.json();
+
+    if (data.url) {
+      window.location.href = data.url; 
+    } else {
+      console.error("No Stripe URL returned");
+    }
+  } catch (err) {
+    console.error("Stripe checkout error:", err);
+  }
+};
+
   return (
     <>
       <div className="min-h-screen bg-gray-100 px-2 sm:px-6 py-4">
@@ -49,14 +75,11 @@ const Addtocart = () => {
               key={index}
               className="flex flex-col sm:flex-row gap-3 sm:gap-4 border-b pb-4 mb-4"
             >
-              {/* Image */}
               <img
                 src={item.img}
                 alt={item.title}
                 className="w-full sm:w-24 h-36 sm:h-24 object-cover rounded-lg"
               />
-
-              {/* Details */}
               <div className="flex-1 text-sm space-y-1">
                 <p className="font-medium text-sm sm:text-base">
                   {item.title}
@@ -101,10 +124,7 @@ const Addtocart = () => {
           </div>
           <button
             className="w-full bg-blue-600 text-white py-2 sm:py-3 mt-5 rounded-lg sm:rounded-xl text-sm sm:text-base"
-            onClick={() => {
-              setOrderSuccess(true);
-              dispatch(clearCart());
-            }}
+            onClick={handleStripeCheckout}
           >
             Confirm Order
           </button>
